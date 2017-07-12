@@ -20,6 +20,12 @@ componentDidMount() {
     this.setState({ books })
   })
 }
+updateShelf = (book, shelf) => {
+  this.setState({shelf: shelf})
+  if(shelf) {
+    BooksAPI.update(book, shelf).then((books) => this.setState({books:books}))
+  }
+}
   render() {
     return (
       <div className="app">
@@ -40,7 +46,7 @@ componentDidMount() {
             <div className="list-books-title">
               <h1>MyReads</h1>
             </div>
-            <BookShelves books={this.state.books} />
+            <BookShelves updateShelf={this.updateShelf} books={this.state.books} />
             <div className="open-search">
               <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
             </div>

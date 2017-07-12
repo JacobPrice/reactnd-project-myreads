@@ -6,7 +6,7 @@ const BookShelf = (props) => {
     <div className="bookshelf">
       <h2 className="bookshelf-title">{props.shelf}</h2>
       <div className="bookshelf-books">
-        <ListBooks books={props.books} />
+        <ListBooks updateShelf={props.updateShelf} books={props.books} />
       </div>
     </div>
   )
@@ -18,13 +18,13 @@ class BookShelves extends React.Component {
     return (
       <div className="list-books-content">
         <div>
-          <BookShelf shelf="Currently Reading" books={books.filter((book) => {
+          <BookShelf updateShelf={this.props.updateShelf} shelf="Currently Reading" books={books.filter((book) => {
             return book.shelf == 'currentlyReading'
           })}/>
-          <BookShelf shelf="Want to Read" books={books.filter((book) => {
+          <BookShelf updateShelf={this.props.updateShelf} shelf="Want to Read" books={books.filter((book) => {
             return book.shelf == 'wantToRead'
           })}/>
-          <BookShelf shelf="Read" books={books.filter((book) => {
+          <BookShelf updateShelf={this.props.updateShelf} shelf="Read" books={books.filter((book) => {
             return book.shelf == 'read'
           })}/>
         </div>
