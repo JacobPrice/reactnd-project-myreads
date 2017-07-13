@@ -13,20 +13,26 @@ class BooksApp extends React.Component {
      */
      // TODO: Create array for each Book type and house the state here. This will be able to be updated and used across both the search and the list page. The change method will need to be passed down to the selector component. Since these three will now contain their own array, be sure to update each and pass them down to the individual components in  BookShelves component. These will be prefiltered, so get rid of the filtering done there. 😃
     showSearchPage: false,
-    books: []
+    books: [],
+    requesting: true
   }
 componentDidMount() {
   BooksAPI.getAll().then((books) => {
-    this.setState({ books })
+    this.setState({
+      books,
+      requesting: false
+    })
   })
 }
 updateShelf = (book, shelf) => {
-  this.setState({shelf: shelf})
   if(shelf) {
-    BooksAPI.update(book, shelf).then((books) => this.setState({books:books}))
+    BooksAPI.update(book, shelf)
   }
+  console.log(book, shelf)
+  console.log(this.state.books)
 }
   render() {
+      console.log(this.state.books)
     return (
       <div className="app">
         {this.state.showSearchPage ? (
@@ -46,7 +52,8 @@ updateShelf = (book, shelf) => {
             <div className="list-books-title">
               <h1>MyReads</h1>
             </div>
-            <BookShelves updateShelf={this.updateShelf} books={this.state.books} />
+
+            <BookShelves updateShelf={this.updateShelf} books={this.state.books} /> 
             <div className="open-search">
               <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
             </div>

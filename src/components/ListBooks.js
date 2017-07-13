@@ -28,7 +28,7 @@ class ListBooks extends React.Component {
               <div className="book-cover" style={{
                 width: 128,
                 height: 193,
-                backgroundImage: `url("${book.imageLinks.thumbnail}")`
+          backgroundImage: `url("${book.imageLinks.thumbnail}")`
               }}></div>
               <div className="book-shelf-changer">
                 <Selector book={book} updateShelf={this.props.updateShelf} value={book.shelf}/>
@@ -38,6 +38,7 @@ class ListBooks extends React.Component {
             <div className="book-authors">{book.authors}</div>
           </div>
         ))}
+
       </ol>
     )
   }
