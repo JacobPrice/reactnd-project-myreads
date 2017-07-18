@@ -1,7 +1,8 @@
 import React from 'react'
-import {getAll, update} from './BooksAPI'
+import {getAll, update, search} from './BooksAPI'
 import './App.css'
 import BookShelves from './components/BookShelves'
+import Search from './components/Search'
 
 class BooksApp extends React.Component {
   state = {
@@ -23,34 +24,26 @@ class BooksApp extends React.Component {
       }
     }))
   }
+  // searchBooks = (e) => {
+  //   search(e.target.value, 25).then((books) => {
+  //     if() {
+  //          this.setState({results: []});
+  //          return;
+  //        }
+  //     if(!books.error)
+  //   this.setState({searchBooks: books})
+  //   })
+  //   console.log(this.state.searchBooks)
+  // }
   render() {
     return (
       <div className="app">
         {this.state.showSearchPage
           ? (
-            <div className="search-books">
-              <div className="search-books-bar">
-                <a className="close-search" onClick={() => this.setState({showSearchPage: false})}>Close</a>
-                <div className="search-books-input-wrapper">
-                  <input type="text" placeholder="Search by title or author"/>
-                </div>
-              </div>
-              <div className="search-books-results">
-                <ol className="books-grid"></ol>
-              </div>
-            </div>
+            <Search />
           )
           : (
-            <div className="list-books">
-              <div className="list-books-title">
-                <h1>MyReads</h1>
-              </div>
-
-              <BookShelves updateShelf={this.updateShelf} books={this.state.books}/>
-              <div className="open-search">
-                <a onClick={() => this.setState({showSearchPage: true})}>Add a book</a>
-              </div>
-            </div>
+            <BookShelves updateShelf={this.updateShelf} books={this.state.books}/>
           )}
       </div>
     )

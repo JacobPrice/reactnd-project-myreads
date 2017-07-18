@@ -50,6 +50,6 @@ class ListBooks extends React.Component {
 }
 ListBooks.propTypes = {
   books: PropTypes.array.isRequired,
-  updateShelf: PropTypes.func.isRequired
+  updateShelf: PropTypes.func
 }
 export default ListBooks
