@@ -17,7 +17,7 @@ const Selector = (props) => {
 }
 Selector.propTypes = {
   value: PropTypes.string.isRequired,
-  updateShelf: PropTypes.func.isRequired,
+  updateShelf: PropTypes.func,
   book: PropTypes.object.isRequired
 }
 class ListBooks extends React.Component {

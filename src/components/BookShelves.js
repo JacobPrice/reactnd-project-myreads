@@ -1,6 +1,7 @@
 import React from 'react'
 import ListBooks from './ListBooks'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 const BookShelf = (props) => {
   return (
@@ -40,7 +41,7 @@ class BookShelves extends React.Component {
             </div>
           </div>
           <div className="open-search">
-            <a>Add a book</a>
+            <Link onClick={this.props.getBooks} to='/search'>Add a book</Link>
           </div>
         </div>
     )
