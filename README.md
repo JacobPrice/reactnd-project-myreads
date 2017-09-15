@@ -1,4 +1,5 @@
 # My Reads Project
+This is the first project from Udacity's React Nanodegree.
 ### Installation
 To install My Reads clone the repository:
 ```
