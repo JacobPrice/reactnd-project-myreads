@@ -7,13 +7,14 @@ import { Route } from 'react-router-dom'
 
 class BooksApp extends React.Component {
   state = {
-    showSearchPage: false,
     books: [],
     searchBooks: []
   }
+
   componentDidMount() {
     getAll().then(books => this.setState({books}))
   }
+
   updateShelf = (curBook, shelf) => {
     update(curBook, shelf).then(() => this.setState(state => {
       return {
@@ -32,39 +33,36 @@ class BooksApp extends React.Component {
       }
     }))
   }
-getBooks = () => {
-    getAll().then(books => this.setState({books}))
-}
+  getBooks = () => {
+    getAll().then(books => this.setState({ books }))
+    this.setState({ searchBooks: [] })
+  }
+
   searchBooks = (searchQuery) => {
     if (searchQuery === '') {
-      this.setState({searchBooks: [] })
+      this.setState({ searchBooks: [] })
     } else {
-      search(searchQuery).then(searchBooks => {
-        console.log(searchQuery)
-        if (searchBooks.error === 'empty query') {
-          this.setState({searchBooks: [], noResults: true})
+      search(searchQuery).then(books => {
+        if (books.error === 'empty query') {
+          this.setState({ searchBooks: [] })
         } else {
-          // Method to remove duplicate ID's from the api res
-          function trim(arr, key) {
-            let values = {}
-            return arr.filter(function(item) {
-              let val = item[key]
-              let exists = values[val]
-              values[val] = true
-              return !exists
-            })
-          }
+          const searchResults = books.map(book => {
+            const existingBook = this.state.books.find(b => b.id === book.id)
+              book.shelf = existingBook ? existingBook.shelf : 'none'
+            return book
+          })
           this.setState({
-            searchBooks: trim(searchBooks, 'id'),
-            noResults: false
+            searchBooks: searchResults,
           })
         }
       })
     }
   }
+
   updateSearch = (search) => {
-    this.setState({search})
+    this.setState({ search })
   }
+
   render() {
     return (
       <div className="app">

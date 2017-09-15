@@ -1,4 +1,4 @@
-# My Reads
+# My Reads Project
 ### Installation
 To install My Reads clone the repository:
 ```

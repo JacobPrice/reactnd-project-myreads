@@ -7,7 +7,7 @@ const Selector = (props) => {
       value={props.value}
       onChange={e => {
         props.updateShelf(props.book, e.target.value)}}>
-      <option value="none" disabled>Move to...</option>
+      <option value="default" disabled>Move to...</option>
       <option value="currentlyReading">Currently Reading</option>
       <option value="wantToRead">Want to Read</option>
       <option value="read">Read</option>
@@ -20,7 +20,7 @@ Selector.propTypes = {
   updateShelf: PropTypes.func,
   book: PropTypes.object.isRequired
 }
-class ListBooks extends React.Component {
+class BookList extends React.Component {
   render() {
     const books = this.props.books
     return (
@@ -48,8 +48,8 @@ class ListBooks extends React.Component {
     )
   }
 }
-ListBooks.propTypes = {
+BookList.propTypes = {
   books: PropTypes.array.isRequired,
   updateShelf: PropTypes.func
 }
-export default ListBooks
+export default BookList

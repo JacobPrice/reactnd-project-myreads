@@ -1,5 +1,5 @@
 import React from 'react'
-import ListBooks from './ListBooks'
+import BookList from './BookList'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
@@ -8,7 +8,7 @@ const BookShelf = (props) => {
     <div className="bookshelf">
       <h2 className="bookshelf-title">{props.shelf}</h2>
       <div className="bookshelf-books">
-        <ListBooks updateShelf={props.updateShelf} books={props.books} />
+        <BookList updateShelf={props.updateShelf} books={props.books} />
       </div>
     </div>
   )
